@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CT Needle Insertion · Moira Bohley</title>
+  <meta name="description" content="Integrated respiratory sensing and gated control for autonomous needle insertion via a CT bore robotic arm.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="name" href="../index.html">Moira Bohley</a>
+    <ul>
+      <li><a href="../index.html#research">Research</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../assets/Bohley_Resume.pdf">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+  <a class="back" href="../index.html#research">← All research</a>
+
+  <header class="phead">
+    <div class="badges"><span class="badge">Co-first author</span><span class="badge">ICRA 2027 (under review)</span></div>
+    <h1>Integrated Respiratory Sensing and Gated Control for Autonomous Needle Insertion via CT Bore Robotic Arm</h1>
+    <!-- Check this list and order against the arXiv page before publishing -->
+    <p class="authors">Emma Huang*, <b>Moira Bohley*</b>, Krishna Jamakhandi, Rebecca Fellbaum, Changwei Chen, Derek Chen, Ananya Rao, Sean Tutton, Albert Hsiao, Elizabeth Peiros, Michael C. Yip</p>
+    <p class="venue">Under review at IEEE International Conference on Robotics and Automation (ICRA), 2027 · * Equal contribution</p>
+    <div class="links">
+      <a class="btn primary" href="https://arxiv.org/abs/2610.30452">Paper (arXiv)</a>
+      <a class="btn" href="#video">Video</a>
+      <!-- <a class="btn" href="https://github.com/...">Code</a> -->
+      <a class="btn" href="#bibtex">BibTeX</a>
+    </div>
+  </header>
+
+  <!-- Paste your YouTube video ID below (the part after watch?v=) -->
+  <iframe id="video" class="video" src="https://www.youtube-nocookie.com/embed/YOUR-VIDEO-ID"
+          title="Paper video: autonomous needle insertion in a CT bore" allowfullscreen
+          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"></iframe>
+
+  <div class="prose">
+    <h2>Overview</h2>
+    <p>
+      CT-guided needle procedures such as biopsies and ablations require placing a needle precisely
+      into a target that moves as the patient breathes. This work puts a robotic arm inside the CT bore,
+      senses the patient's respiration in real time, and gates needle insertion so it happens only during
+      a safe, repeatable window of the breathing cycle.
+      <span class="todo">[Tighten this to 2–3 sentences in your own words, and add the headline result, e.g. targeting error in mm.]</span>
+    </p>
+
+    <h2>Approach</h2>
+    <ul>
+      <li><b>Respiratory sensing:</b> <span class="todo">[how breathing is measured and how the gating window is chosen]</span></li>
+      <li><b>Insertion planning:</b> optimal needle entry points and orientations chosen to avoid bone collision and tissue damage.</li>
+      <li><b>Gated, delay-compensating control:</b> the controller compensates for signal and actuation latency so the needle advances within the breathing window rather than after it.</li>
+      <li><b>System integration:</b> <span class="todo">[hardware, CT setup, phantom or cadaver experiments]</span></li>
+    </ul>
+
+    <div class="figs">
+      <figure>
+        <img class="media" src="../assets/img/ct-fig1.png" alt="System overview figure">
+        <figcaption>System overview. <span class="todo">[Replace with Fig. 1 from the paper.]</span></figcaption>
+      </figure>
+      <figure>
+        <img class="media" src="../assets/img/ct-fig2.png" alt="Results figure">
+        <figcaption>Results. <span class="todo">[Replace with your key result plot.]</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="contrib">
+      <h2>My contribution</h2>
+      <ul>
+        <li>Led the project to ICRA submission as co-first author, coordinating a 7-person team across mechanical and software work.</li>
+        <li>Developed the delay-compensating control scheme that times insertion within the breathing cycle.</li>
+        <li>Planned optimal needle insertion points and orientations to avoid bone and tissue damage.</li>
+        <li>Implemented the simulation used to develop and validate the controller. <span class="todo">[Confirm and adjust.]</span></li>
+      </ul>
+    </div>
+
+    <h2 id="bibtex">Citation</h2>
+<pre class="bib">@article{huang2026ctneedle,
+  title   = {Integrated Respiratory Sensing and Gated Control for Autonomous
+             Needle Insertion via CT Bore Robotic Arm},
+  author  = {Huang, Emma and Bohley, Moira and others},
+  journal = {arXiv preprint arXiv:2610.30452},
+  year    = {2026}
+}</pre>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Moira Bohley · <a href="../index.html">Home</a></div>
+</footer>
+
+</body>
+</html>

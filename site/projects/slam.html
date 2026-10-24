@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LiDAR–IMU SLAM · Moira Bohley</title>
+  <meta name="description" content="Trajectory estimation and occupancy grid mapping from fused LiDAR and IMU data.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="name" href="../index.html">Moira Bohley</a>
+    <ul>
+      <li><a href="../index.html#research">Research</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../assets/Bohley_Resume.pdf">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- This page doubles as the template for any smaller project:
+     copy it, rename it, and swap the text and images. -->
+<main class="wrap">
+  <a class="back" href="../index.html#projects">← All projects</a>
+
+  <header class="phead">
+    <h1>LiDAR–IMU SLAM</h1>
+    <p class="venue"><span class="todo">[Course or context, e.g. "Course project, UC San Diego, 2025"]</span></p>
+    <div class="links">
+      <a class="btn primary" href="https://github.com/YOUR-USERNAME/REPO">Code</a>
+      <!-- <a class="btn" href="../assets/slam-report.pdf">Report (PDF)</a> -->
+    </div>
+  </header>
+
+  <img class="video" src="../assets/img/slam-hero.gif" alt="Robot trajectory and occupancy map building up over time">
+
+  <div class="prose">
+    <h2>Problem</h2>
+    <p>Estimate a ground robot's trajectory and a map of its surroundings using only onboard IMU and LiDAR data.</p>
+
+    <h2>Approach</h2>
+    <ul>
+      <li>Fused IMU and LiDAR measurements for odometry.</li>
+      <li>Aligned consecutive scans with the Kabsch algorithm to refine pose estimates.</li>
+      <li>Built occupancy grid maps of obstacles from the estimated trajectory.</li>
+      <li><span class="todo">[Loop closure or pose-graph optimization, if you did it]</span></li>
+    </ul>
+
+    <h2>Results</h2>
+    <div class="figs">
+      <figure>
+        <img class="media" src="../assets/img/slam-traj.png" alt="Odometry vs. refined trajectory">
+        <figcaption>Odometry-only vs. refined trajectory.</figcaption>
+      </figure>
+      <figure>
+        <img class="media" src="../assets/img/slam-map.png" alt="Final occupancy grid map">
+        <figcaption>Final occupancy grid map.</figcaption>
+      </figure>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Moira Bohley · <a href="../index.html">Home</a></div>
+</footer>
+
+</body>
+</html>
