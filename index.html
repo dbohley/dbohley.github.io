@@ -4,30 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Moira Bohley</title>
-  <meta name="description" content="Moira Bohley — robotics researcher working on medical robotics, control, and physical human-robot interaction at UC San Diego.">
+  <meta name="description" content="Moira Bohley: robotics researcher working on medical robotics, control, and physical human-robot interaction at UC San Diego.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-
-<nav>
-  <div class="wrap">
-    <a class="name" href="index.html">Moira Bohley</a>
-    <ul>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li class="hide-sm"><a href="#publications">Publications</a></li>
-      <li><a href="assets/Bohley_Resume.pdf">Resume</a></li>
-    </ul>
-  </div>
-</nav>
-
 <main class="wrap">
 
-  <!-- HERO -->
+  <!-- INTRO -->
   <header class="hero">
-    <!-- TODO: add a square photo at assets/img/headshot.jpg -->
+    <!-- Replace with a square photo of yourself -->
     <img class="headshot" src="assets/img/headshot.jpg" alt="Photo of Moira Bohley">
     <div>
       <h1>Moira Bohley</h1>
@@ -35,102 +22,89 @@
       <p>
         I build controllers and planners that let robots work safely in contact with people,
         from autonomous needle insertion inside a CT scanner to bimanual spine stabilization on a humanoid.
-        My work spans optimal control, motion planning, state estimation, and real-hardware integration.
       </p>
       <div class="links">
         <a class="btn primary" href="assets/Bohley_Resume.pdf">Resume (PDF)</a>
         <a class="btn" href="mailto:dbohley@ucsd.edu">Email</a>
         <a class="btn" href="https://github.com/dbohley">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/YOUR-PROFILE">LinkedIn</a>
-        <!-- Uncomment once your Google Scholar profile exists:
-        <a class="btn" href="https://scholar.google.com/citations?user=YOUR-ID">Google Scholar</a> -->
       </div>
     </div>
   </header>
 
-  <!-- FEATURED RESEARCH -->
-  <section id="research">
-    <h2>Research</h2>
-    <p class="sub">Two papers under review at IEEE ICRA 2027.</p>
+  <!-- PAPER 1 -->
+  <section class="paper" id="ct-needle-insertion">
+    <div class="badges"><span class="badge">Co-first author</span><span class="badge">Under review · IEEE ICRA 2027</span></div>
+    <h2>Integrated Respiratory Sensing and Gated Control for Autonomous Needle Insertion via CT Bore Robotic Arm</h2>
+    <p class="authors">Emma Huang*, <b>Moira Bohley*</b>, Krishna Jamakhandi, Rebecca Fellbaum, Changwei Chen, Derek Chen, Ananya Rao, Sean Tutton, Albert Hsiao, Elizabeth Peiros, Michael C. Yip</p>
+    <p class="venue">* Equal contribution</p>
+    <div class="links">
+      <a class="btn primary" href="https://arxiv.org/abs/2610.30452">Read the paper (arXiv)</a>
+    </div>
 
-    <div class="research">
-      <a class="rcard" href="projects/ct-needle-insertion.html">
-        <!-- TODO: replace with a 5–10 s muted looping GIF or MP4 from the paper video -->
-        <img class="media" src="assets/img/ct-thumb.gif" alt="CT bore robotic arm performing gated needle insertion">
-        <div>
-          <div class="badges"><span class="badge">Co-first author</span><span class="badge">ICRA 2027 (under review)</span></div>
-          <h3>Integrated Respiratory Sensing and Gated Control for Autonomous Needle Insertion via CT Bore Robotic Arm</h3>
-          <p>A robotic arm that works inside a CT scanner, senses the patient's breathing, and times needle insertion to the safe window of the respiratory cycle while compensating for signal and actuation delay.</p>
-          <div class="tags"><span class="tag">Gated control</span><span class="tag">Delay compensation</span><span class="tag">Needle path planning</span><span class="tag">Medical robotics</span></div>
-        </div>
-      </a>
+    <!-- Paste the YouTube video ID (the part after watch?v=) in place of YOUR-VIDEO-ID -->
+    <iframe class="video" src="https://www.youtube-nocookie.com/embed/YOUR-VIDEO-ID"
+            title="Video: autonomous needle insertion in a CT bore" allowfullscreen
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"></iframe>
 
-      <a class="rcard" href="projects/cspine-stabilization.html">
-        <img class="media" src="assets/img/cspine-thumb.gif" alt="Humanoid robot stabilizing the cervical spine during a rolling maneuver">
-        <div>
-          <div class="badges"><span class="badge">Second author</span><span class="badge">ICRA 2027 (under review)</span></div>
-          <h3>Bi-manual Stabilization of the Cervical Spine for Safe Physical Human-Robot Interaction in Rolling Maneuvers</h3>
-          <p>Two-arm control that holds a patient's head and neck in line while they are rolled, a key step in casualty care. Demonstrated on a Unitree G1 humanoid.</p>
-          <div class="tags"><span class="tag">Bimanual control</span><span class="tag">pHRI</span><span class="tag">Humanoid (G1)</span><span class="tag">MuJoCo</span></div>
-        </div>
-      </a>
+    <h3>Overview</h3>
+    <p>
+      CT-guided needle procedures such as biopsies and ablations need the needle to reach a target that moves
+      every time the patient breathes. We put a robotic arm inside the CT bore, sense the patient's breathing
+      in real time, and gate the insertion so the needle advances only during a safe, repeatable window of
+      the breathing cycle.
+      <span class="todo">[Add the headline result, e.g. targeting error in mm.]</span>
+    </p>
+
+    <div class="contrib">
+      <h3>My contributions</h3>
+      <ul>
+        <li><b>Gated, delay-compensating control.</b> I developed the control scheme that times needle insertion
+          within the breathing cycle. Because both the respiratory signal and the arm's actuation have latency,
+          the controller compensates for that delay so the needle moves during the safe window rather than after it closes.
+          <span class="todo">[Add a sentence on how: prediction, phase estimation, etc.]</span></li>
+        <li><b>Insertion planning.</b> I planned optimal needle entry points and orientations that reach the target
+          while avoiding bone collision and tissue damage.
+          <span class="todo">[What the planner optimizes and how it uses the CT data.]</span></li>
+        <li><b>Simulation.</b> I implemented the simulation used to develop and test the controller before
+          running it on hardware. <span class="todo">[Confirm and add the simulator.]</span></li>
+        <li><b>Leading the paper.</b> As co-first author, I led the project to ICRA submission, coordinating a
+          7-person team across the mechanical and software work.</li>
+      </ul>
     </div>
   </section>
 
-  <!-- OTHER PROJECTS -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <p class="sub">Selected technical projects in estimation, mapping, and planning.</p>
-
-    <div class="grid">
-      <article class="pcard">
-        <img class="media" src="assets/img/slam-thumb.gif" alt="Occupancy grid map built from LiDAR and IMU data">
-        <div class="body">
-          <h3>LiDAR–IMU SLAM</h3>
-          <p>Fused IMU and LiDAR data to estimate the robot's trajectory with Kabsch-based scan alignment, then built occupancy grid maps of the environment.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Sensor fusion</span><span class="tag">Mapping</span></div>
-          <a class="more" href="projects/slam.html">Details →</a>
-        </div>
-      </article>
-
-      <article class="pcard">
-        <img class="media" src="assets/img/planning-thumb.gif" alt="Comparison of A* and RRT* paths through an obstacle field">
-        <div class="body">
-          <h3>Search vs. Sampling-Based Planning</h3>
-          <p>Implemented and compared A*, RRT*, and OMPL planners in 3D environments, measuring path quality and planning time. <span class="todo">[Edit to match your project.]</span></p>
-          <div class="tags"><span class="tag">A*</span><span class="tag">RRT*</span><span class="tag">OMPL</span></div>
-          <a class="more" href="https://github.com/YOUR-USERNAME/REPO">Code →</a>
-        </div>
-      </article>
-
-      <article class="pcard">
-        <img class="media" src="assets/img/project3-thumb.gif" alt="Project 3 preview">
-        <div class="body">
-          <h3>[Third project]</h3>
-          <p><span class="todo">[EKF / state estimation, diffusion model, or humanoid control in MuJoCo. One or two sentences on the problem and your result.]</span></p>
-          <div class="tags"><span class="tag">[Tool]</span><span class="tag">[Method]</span></div>
-          <a class="more" href="https://github.com/YOUR-USERNAME/REPO">Code →</a>
-        </div>
-      </article>
+  <!-- PAPER 2 -->
+  <section class="paper" id="cspine-stabilization">
+    <div class="badges"><span class="badge">Second author</span><span class="badge">Under review · IEEE ICRA 2027</span></div>
+    <h2>Bi-manual Stabilization of the Cervical Spine for Safe Physical Human-Robot Interaction in Rolling Maneuvers</h2>
+    <p class="authors">Elizabeth Peiros, <b>Moira Bohley</b>, Lucas Yager, Xiao Liang, Derek Chen, Rebecca Fellbaum, Chris D'Ambrosia, Ananya Rao, Michael C. Yip</p>
+    <div class="links">
+      <a class="btn primary" href="https://arxiv.org/abs/2610.04220">Read the paper (arXiv)</a>
     </div>
-  </section>
 
-  <!-- PUBLICATIONS -->
-  <section id="publications">
-    <h2>Publications</h2>
-    <p class="sub">* Equal contribution</p>
-    <ul class="pubs">
-      <li>
-        <div class="title">Integrated Respiratory Sensing and Gated Control for Autonomous Needle Insertion via CT Bore Robotic Arm</div>
-        <div>E. Huang*, <b>M. Bohley*</b>, K. Jamakhandi, R. Fellbaum, et al.</div>
-        <div class="meta">Under review at IEEE ICRA 2027 · <a href="https://arxiv.org/abs/2610.30452">arXiv</a> · <a href="projects/ct-needle-insertion.html">Project page</a></div>
-      </li>
-      <li>
-        <div class="title">Bi-manual Stabilization of the Cervical Spine for Safe Physical Human-Robot Interaction in Rolling Maneuvers</div>
-        <div>E. Peiros, <b>M. Bohley</b>, L. Yager, X. Liang, et al.</div>
-        <div class="meta">Under review at IEEE ICRA 2027 · <a href="https://arxiv.org/abs/2610.04220">arXiv</a> · <a href="projects/cspine-stabilization.html">Project page</a></div>
-      </li>
-    </ul>
+    <iframe class="video" src="https://www.youtube-nocookie.com/embed/YOUR-VIDEO-ID"
+            title="Video: bimanual cervical spine stabilization on a humanoid" allowfullscreen
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"></iframe>
+
+    <h3>Overview</h3>
+    <p>
+      When an injured person has to be rolled, for example during casualty extraction, their head and neck must
+      stay in line with the spine to avoid worsening a possible spinal injury. This usually takes trained responders.
+      We developed a two-arm controller that stabilizes the cervical spine through the roll and demonstrated it on a
+      Unitree G1 humanoid.
+      <span class="todo">[Add the headline result.]</span>
+    </p>
+
+    <div class="contrib">
+      <h3>My contributions</h3>
+      <ul>
+        <li><b>Hardware integration on the G1.</b> I integrated the stabilization controller onto the Unitree G1
+          humanoid and ran the real-world experiments.
+          <span class="todo">[What it took: interfaces, safety limits, tuning, sim-to-real issues you solved.]</span></li>
+        <li><span class="todo">[Anything else you owned, e.g. simulation in MuJoCo, inverse kinematics, experiment design, analysis.]</span></li>
+      </ul>
+    </div>
   </section>
 
 </main>
@@ -138,6 +112,5 @@
 <footer>
   <div class="wrap">© 2026 Moira Bohley · <a href="mailto:dbohley@ucsd.edu">dbohley@ucsd.edu</a></div>
 </footer>
-
 </body>
 </html>
