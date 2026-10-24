@@ -8,8 +8,6 @@ Anything highlighted in yellow on the page is a placeholder. Search `index.html`
 
 - **Resume:** add `assets/Bohley_Resume.pdf`.
 - **Photo:** replace `assets/img/headshot.jpg` with a square photo.
-- **LinkedIn:** replace `YOUR-PROFILE` in `index.html`.
-- **Videos:** upload each paper video to YouTube (unlisted is fine) and paste the video ID (the part after `watch?v=`) in place of `YOUR-VIDEO-ID`.
 - **Author lists:** check both against the arXiv pages.
 - **"My contributions" boxes:** these matter most to hiring managers. Make each bullet something you personally owned, with enough detail to show how you did it.
 
