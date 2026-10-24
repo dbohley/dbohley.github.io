@@ -172,3 +172,6 @@ nav .name { white-space: nowrap; }
   nav ul { font-size: 14px; gap: 12px; }
   .hide-sm { display: none; }
 }
+
+/* Paper figures keep their real shape instead of being cropped to 16:9 */
+figure img.media { aspect-ratio: auto; height: auto; object-fit: contain; background: transparent; }
