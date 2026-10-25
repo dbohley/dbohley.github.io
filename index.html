@@ -58,16 +58,25 @@
 
     <div class="contrib">
       <h3>My contributions</h3>
+      <p>I designed and built the control side of the system: the gated insertion controller (Methods, Section D)
+        and the state machine that runs the procedure (Methods, Section E), and I took part in the experiments
+        that validate them.</p>
       <ul>
-        <li><b>Gated, delay-compensating control.</b> I developed the control scheme that times needle insertion
-          within the breathing cycle. Because both the respiratory signal and the arm's actuation have latency,
-          the controller compensates for that delay so the needle moves during the safe window rather than after it closes.
-          <span class="todo">[Add a sentence on how: prediction, phase estimation, etc.]</span></li>
-        <li><b>Insertion planning.</b> I planned optimal needle entry points and orientations that reach the target
-          while avoiding bone collision and tissue damage.
-          <span class="todo">[What the planner optimizes and how it uses the CT data.]</span></li>
-        <li><b>Simulation.</b> I implemented the simulation used to develop and test the controller before
-          running it on hardware. <span class="todo">[Confirm and add the simulator.]</span></li>
+        <li><b>Gated, delay-compensating control (Section D).</b> I developed the controller that times needle
+          insertion within the breathing cycle. Both the respiratory signal and the arm's actuation arrive with delay,
+          so the controller compensates for that latency and the needle advances during the safe window rather than
+          after it has closed.
+          <span class="todo">[One sentence on how the compensation works.]</span></li>
+        <li><b>Procedure state machine (Section E).</b> I designed the state machine that sequences the autonomous
+          insertion and decides when the robot is allowed to move.
+          <span class="todo">[Name the main states and what triggers each transition.]</span></li>
+        <li><b>Respiratory motion estimation.</b> I used tactile sensing in an Extended Kalman Filter to estimate
+          chest motion for accurate needle insertion.</li>
+        <li><b>Insertion planning.</b> I developed algorithms that choose needle entry points and orientations to
+          reach the target while avoiding bone collision and excessive tissue damage.</li>
+        <li><b>Simulation and experiments.</b> I implemented simulation and physical testing of the arm in ROS 2,
+          and took part in the experiments evaluating the controller and state machine.
+          <span class="todo">[Which experiments, and the result.]</span></li>
         <li><b>Leading the paper.</b> As co-first author, I led the project to ICRA submission, coordinating a
           7-person team across the mechanical and software work.</li>
       </ul>
@@ -99,10 +108,15 @@
     <div class="contrib">
       <h3>My contributions</h3>
       <ul>
-        <li><b>Hardware integration on the G1.</b> I integrated the stabilization controller onto the Unitree G1
-          humanoid and ran the real-world experiments.
-          <span class="todo">[What it took: interfaces, safety limits, tuning, sim-to-real issues you solved.]</span></li>
-        <li><span class="todo">[Anything else you owned, e.g. simulation in MuJoCo, inverse kinematics, experiment design, analysis.]</span></li>
+        <li><b>Digital twin and inverse kinematics.</b> I created a digital twin of the bimanual setup and used
+          nonlinear-optimization inverse kinematics to coordinate the two 7-DoF arms, solving jointly for
+          position, orientation, and smoothness so the patient's head stays aligned with the spine during movement.</li>
+        <li><b>Head–torso pose tracking.</b> I built a vision pipeline using ArUco markers to track head and torso
+          pose, which is how we measure cervical spine alignment error.</li>
+        <li><b>Bimanual grasp control.</b> I developed a grasp controller that estimates contact force from
+          joint-torque feedback and uses it to regulate grip.</li>
+        <li><b>Hardware integration on the G1.</b> I integrated the system onto the Unitree G1 humanoid platform
+          for the real-world experiments.</li>
       </ul>
     </div>
   </section>
