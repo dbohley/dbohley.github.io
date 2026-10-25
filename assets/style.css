@@ -100,3 +100,8 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--m
 
 .paper ul ul { margin-top: 8px; padding-left: 22px; list-style: circle; }
 .paper ul ul li { margin-bottom: 8px; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 20px; }
+.tag { font-size: 13px; padding: 3px 10px; border-radius: 6px; background: var(--tag); color: var(--muted); }
+.hero { align-items: start; }
+.headshot { margin-top: 8px; }
