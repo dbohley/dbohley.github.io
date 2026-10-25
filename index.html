@@ -49,34 +49,45 @@
 
     <h3>Overview</h3>
     <p>
-      CT-guided needle procedures such as biopsies and ablations need the needle to reach a target that moves
-      every time the patient breathes. We put a robotic arm inside the CT bore, sense the patient's breathing
-      in real time, and gate the insertion so the needle advances only during a safe, repeatable window of
-      the breathing cycle.
-      <span class="todo">[Add the headline result, e.g. targeting error in mm.]</span>
+      CT-guided lung biopsy is still largely manual: the patient holds their breath while the clinician adjusts the
+      needle by hand and repeats CT scans to confirm placement. We built an integrated sensing and control system that
+      inserts the needle inside the CT bore in sync with the patient's breathing, with no breath hold. It tracks and
+      predicts the breathing cycle, advances the needle only during exhalation, and stops when it detects abnormal
+      breathing. The goal is shorter procedures, less patient discomfort, and less radiation exposure.
+    </p>
+    <p>
+      On a phantom test bench, all five end-to-end trials reached the full 40&nbsp;mm depth without breaking the
+      breathing-gating rules, and abrupt changes in breathing were detected in about 0.2&nbsp;s.
     </p>
 
     <div class="contrib">
       <h3>My contributions</h3>
-      <p>I designed and built the control side of the system: the gated insertion controller (Methods, Section D)
-        and the state machine that runs the procedure (Methods, Section E), and I took part in the experiments
-        that validate them.</p>
+      <p>I designed the control system and the procedure state machine, and I implemented and ran the test-bench
+        experiments that validate them.</p>
       <ul>
-        <li><b>Gated, delay-compensating control (Section D).</b> I developed the controller that times needle
-          insertion within the breathing cycle. Both the respiratory signal and the arm's actuation arrive with delay,
-          so the controller compensates for that latency and the needle advances during the safe window rather than
-          after it has closed.
-          <span class="todo">[One sentence on how the compensation works.]</span></li>
-        <li><b>Procedure state machine (Section E).</b> I designed the state machine that sequences the autonomous
-          insertion and decides when the robot is allowed to move.
-          <span class="todo">[Name the main states and what triggers each transition.]</span></li>
-        <li><b>Respiratory motion estimation.</b> I used tactile sensing in an Extended Kalman Filter to estimate
-          chest motion for accurate needle insertion.</li>
+        <li><b>Gated, delay-compensating control.</b> The breathing signal reaches the controller roughly 300&nbsp;ms
+          late, so a controller that reacts to the latest reading will always be behind. I designed the controller to
+          aim the needle at where the chest will be when it arrives, not where the sensor last saw it.
+          <ul>
+            <li><b>EKF breathing forecast.</b> An Extended Kalman Filter fits a harmonic model of breathing to the
+              contact-sensor signal and forecasts chest position one horizon ahead, where the horizon adds up sensing
+              lag, computation time, needle-drive lag, and needle travel time. The forecast cut position error by
+              29.8% compared with the raw sensor.</li>
+            <li><b>Needle-drive compensation.</b> I designed a lead compensator for the needle axis, chosen to
+              minimize tracking lag at breathing rates while meeting phase-margin and noise limits.</li>
+            <li><b>Abnormal-breathing detection.</b> The filter's innovation statistics flag when breathing departs
+              from the model, catching abrupt changes in about 0.2&nbsp;s without stopping for normal, gradual
+              variation.</li>
+          </ul>
+        </li>
+        <li><b>Procedure state machine.</b> I designed the state machine that runs the insertion in four stages:
+          approaching and contacting the torso, sensing breathing until the forecast is reliable enough to proceed,
+          puncturing the skin during exhalation, and advancing the needle in increments on each exhalation until it
+          reaches the target depth. It also defines a safe response to abnormal breathing in every stage.</li>
         <li><b>Insertion planning.</b> I developed algorithms that choose needle entry points and orientations to
           reach the target while avoiding bone collision and excessive tissue damage.</li>
-        <li><b>Simulation and experiments.</b> I implemented simulation and physical testing of the arm in ROS 2,
-          and took part in the experiments evaluating the controller and state machine.
-          <span class="todo">[Which experiments, and the result.]</span></li>
+        <li><b>Test-bench validation.</b> I implemented and ran the experiments that validate the system on a test
+          bench, covering torso approach, breathing forecasting, the full insertion sequence, and anomaly detection.</li>
         <li><b>Leading the paper.</b> As co-first author, I led the project to ICRA submission, coordinating a
           7-person team across the mechanical and software work.</li>
       </ul>
@@ -98,11 +109,14 @@
 
     <h3>Overview</h3>
     <p>
-      When an injured person has to be rolled, for example during casualty extraction, their head and neck must
-      stay in line with the spine to avoid worsening a possible spinal injury. This usually takes trained responders.
-      We developed a two-arm controller that stabilizes the cervical spine through the roll and demonstrated it on a
-      Unitree G1 humanoid.
-      <span class="todo">[Add the headline result.]</span>
+      Rolling an injured person onto their side, for example during casualty extraction, requires someone to hold
+      the head and neck in line with the spine so a possible spinal injury isn't made worse. We adapted a Unitree G1
+      humanoid with compliant grip pads and developed a bimanual algorithm that holds the head as firmly as safety
+      limits allow while controlling neck rotation through the roll.
+    </p>
+    <p>
+      With motion prediction, the robot held axial (left-right) neck alignment within 0.21&deg; of novice human
+      responders.
     </p>
 
     <div class="contrib">
