@@ -125,15 +125,19 @@
     <div class="contrib">
       <h3>My contributions</h3>
       <ul>
-        <li><b>Digital twin and inverse kinematics.</b> I created a digital twin of the bimanual setup and used
-          nonlinear-optimization inverse kinematics to coordinate the two 7-DoF arms, solving jointly for
-          position, orientation, and smoothness so the patient's head stays aligned with the spine during movement.</li>
-        <li><b>Head–torso pose tracking.</b> I built a vision pipeline using ArUco markers to track head and torso
-          pose, which is how we measure cervical spine alignment error.</li>
-        <li><b>Bimanual grasp control.</b> I developed a grasp controller that estimates contact force from
-          joint-torque feedback and uses it to regulate grip.</li>
-        <li><b>Hardware integration on the G1.</b> I integrated the system onto the Unitree G1 humanoid platform
-          for the real-world experiments.</li>
+        <li><b>Real-time bimanual inverse kinematics.</b> I built the optimization-based IK that coordinates both
+          7-DoF arms (14 joints) at every control step, weighing hand position, hand orientation, and smoothness against
+          the previous step so the head stays aligned with the spine as the torso rolls. I developed it first in a
+          digital twin of the setup before moving to hardware.</li>
+        <li><b>Head–torso pose tracking.</b> I built the vision pipeline that measures cervical alignment error: ArUco
+          markers on the head and torso, tracked by the robot's head camera and mapped into clinical axes (axial rotation,
+          flexion/extension, lateral bending). The error signal is filtered to reject misreads and smooth jitter, and
+          rate-limited so it can't command sudden arm motion.</li>
+        <li><b>Bimanual grasp control.</b> I developed the grasp controller, which estimates contact force from
+          joint-torque feedback and squeezes until it reaches a calibrated grip threshold.</li>
+        <li><b>Hardware integration and sim-to-real on the G1.</b> I integrated the full system onto the Unitree G1
+          humanoid for the real-world experiments, bringing the camera tracking, IK, and grasp control together on the
+          robot. <span class="todo">[Add 2–3 specifics: what broke going from sim to hardware and how you fixed it.]</span></li>
       </ul>
     </div>
   </section>
