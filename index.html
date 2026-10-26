@@ -131,13 +131,21 @@
           digital twin of the setup before moving to hardware.</li>
         <li><b>Head–torso pose tracking.</b> I built the vision pipeline that measures cervical alignment error: ArUco
           markers on the head and torso, tracked by the robot's head camera and mapped into clinical axes (axial rotation,
-          flexion/extension, lateral bending). The error signal is filtered to reject misreads and smooth jitter, and
-          rate-limited so it can't command sudden arm motion.</li>
+          flexion/extension, lateral bending).</li>
         <li><b>Bimanual grasp control.</b> I developed the grasp controller, which estimates contact force from
           joint-torque feedback and squeezes until it reaches a calibrated grip threshold.</li>
-        <li><b>Hardware integration and sim-to-real on the G1.</b> I integrated the full system onto the Unitree G1
-          humanoid for the real-world experiments, bringing the camera tracking, IK, and grasp control together on the
-          robot. <span class="todo">[Add 2–3 specifics: what broke going from sim to hardware and how you fixed it.]</span></li>
+        <li><b>Hardware integration and sim-to-real on the G1.</b> I brought the tracking, IK, and grasp control
+          together on the Unitree G1 humanoid for the real-world experiments, and worked through the problems that only
+          showed up on hardware:
+          <ul>
+            <li><b>Vision robustness.</b> In uneven lighting, the camera skipped frames and the ArUco pose estimates
+              would sometimes flip orientation. I added filtering that rejects flipped and outlier poses, holds through
+              skipped frames, and rate-limits the error signal, so bad detections never turned into sudden arm motion.</li>
+            <li><b>Head weight and friction.</b> On the real setup, the head's weight and the friction in the neck
+              joint changed how the arms held and rotated it, so I accounted for both in the control to keep the grip
+              secure and the rotation smooth.</li>
+          </ul>
+        </li>
       </ul>
     </div>
   </section>
